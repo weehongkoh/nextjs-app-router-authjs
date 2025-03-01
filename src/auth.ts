@@ -5,6 +5,8 @@ import Credentials from "next-auth/providers/credentials";
 import Auth0 from "next-auth/providers/auth0";
 import Discord from "next-auth/providers/discord";
 import Google from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
+
 
 type GraphQLVariables = {
   email: string;
@@ -42,6 +44,7 @@ const hasuraQuery = async (variables: GraphQLVariables) => {
 };
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  debug: true,
   providers: [
     Credentials({
       id: "hasura-credentials",
@@ -90,6 +93,10 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     Google({
       clientId: process.env.AUTH_AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_AUTH_GOOGLE_SECRET,
+    }),
+    GitHubProvider({
+      clientId: process.env.AUTH_GITHUB_ID,
+      clientSecret: process.env.AUTH_GITHUB_SECRET,
     }),
   ],
   pages: {
