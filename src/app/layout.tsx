@@ -1,7 +1,10 @@
+import '@ant-design/v5-patch-for-react-19';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 import "@/app/globals.css";
 
 import { Inter } from "next/font/google";
 import Provider from "@/components/Provider";
+import AntdProvider from "@/providers/AntdProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Provider>{children}</Provider>
+        <Provider>
+          <AntdRegistry>
+            <AntdProvider>{children}</AntdProvider>
+          </AntdRegistry>
+        </Provider>
       </body>
     </html>
   );

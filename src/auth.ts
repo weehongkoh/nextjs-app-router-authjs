@@ -81,19 +81,19 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         }
       },
     }),
-    Auth0({
-      clientId: process.env.AUTH_AUTH0_ID,
-      clientSecret: process.env.AUTH_AUTH0_SECRET,
-      issuer: process.env.AUTH_AUTH0_ISSUER,
-    }),
-    Discord({
-      clientId: process.env.AUTH_DISCORD_ID,
-      clientSecret: process.env.AUTH_DISCORD_SECRET,
-    }),
-    Google({
-      clientId: process.env.AUTH_AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_AUTH_GOOGLE_SECRET,
-    }),
+    // Auth0({
+    //   clientId: process.env.AUTH_AUTH0_ID,
+    //   clientSecret: process.env.AUTH_AUTH0_SECRET,
+    //   issuer: process.env.AUTH_AUTH0_ISSUER,
+    // }),
+    // Discord({
+    //   clientId: process.env.AUTH_DISCORD_ID,
+    //   clientSecret: process.env.AUTH_DISCORD_SECRET,
+    // }),
+    // Google({
+    //   clientId: process.env.AUTH_AUTH_GOOGLE_ID,
+    //   clientSecret: process.env.AUTH_AUTH_GOOGLE_SECRET,
+    // }),
     GitHubProvider({
       clientId: process.env.AUTH_GITHUB_ID,
       clientSecret: process.env.AUTH_GITHUB_SECRET,
