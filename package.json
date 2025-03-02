@@ -12,6 +12,7 @@
     "@ant-design/icons": "^5.6.1",
     "@ant-design/nextjs-registry": "^1.0.2",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
+    "@hookform/resolvers": "^4.1.2",
     "@types/node": "^22.5.1",
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
@@ -27,9 +28,10 @@
     "postcss": "^8.4.38",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-hook-form": "^7.51.3",
+    "react-hook-form": "^7.54.2",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",

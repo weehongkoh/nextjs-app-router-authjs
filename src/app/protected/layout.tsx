@@ -7,10 +7,13 @@ import {
   TeamOutlined,
   UserOutlined,
   LogoutOutlined,
+  HomeOutlined,
+  FormOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Layout, Menu, theme } from 'antd';
 import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -39,32 +42,32 @@ export default function ProtectedLayout({
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+  const router = useRouter();
 
   const handleLogout = () => {
     signOut({ callbackUrl: '/' });
   };
 
-  const items: MenuItem[] = [
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
-    getItem('User', 'sub1', <UserOutlined />, [
-      getItem('Tom', '3'),
-      getItem('Bill', '4'),
-      getItem('Alex', '5'),
-    ]),
-    getItem('Team', 'sub2', <TeamOutlined />, [
-      getItem('Team 1', '6'),
-      getItem('Team 2', '8'),
-    ]),
-    getItem('Files', '9', <FileOutlined />),
-    getItem('Sign out', 'signout', <LogoutOutlined />),
-  ];
-
-  const handleMenuClick: MenuProps['onClick'] = (e) => {
-    if (e.key === 'signout') {
-      handleLogout();
+  const menuItems: MenuItem[] = [
+    {
+      key: 'home',
+      label: 'Home',
+      icon: <HomeOutlined />,
+      onClick: () => router.push('/protected')
+    },
+    {
+      key: 'form',
+      label: 'Form Example',
+      icon: <FormOutlined />,
+      onClick: () => router.push('/protected/formExample')
+    },
+    {
+      key: 'signout',
+      label: 'Sign out',
+      icon: <LogoutOutlined />,
+      onClick: handleLogout
     }
-  };
+  ];
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -72,15 +75,14 @@ export default function ProtectedLayout({
         <div className="demo-logo-vertical" />
         <Menu
           theme="dark"
-          defaultSelectedKeys={['1']}
+          defaultSelectedKeys={['home']}
           mode="inline"
-          items={items}
-          onClick={handleMenuClick}
+          items={menuItems}
         />
       </Sider>
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }} />
-        <Content style={{ margin: '0 16px' }}>
+        <Content style={{ margin: '1rem', borderRadius: borderRadiusLG, background: colorBgContainer, padding: '1rem' }}>
           {children}
         </Content>
         <Footer style={{ textAlign: 'center' }}>
