@@ -1,20 +1,16 @@
 'use client';
 import React from 'react';
 import { Breadcrumb, theme } from 'antd';
+import { useSession } from 'next-auth/react';
 
 export default function ProtectedPage() {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
-  const breadcrumbItems = [
-    { title: 'User' },
-    { title: 'Bill' },
-  ];
+  const { data: session } = useSession();
 
   return (
     <>
-      <Breadcrumb items={breadcrumbItems} style={{ margin: '16px 0' }} />
       <div
         style={{
           padding: 24,
@@ -23,7 +19,9 @@ export default function ProtectedPage() {
           borderRadius: borderRadiusLG,
         }}
       >
-        Bill is a cat.
+        <pre className="w-full bg-gray-200 p-4 rounded break-words">
+          {JSON.stringify(session?.user, null, 2)}
+        </pre>
       </div>
     </>
   );
