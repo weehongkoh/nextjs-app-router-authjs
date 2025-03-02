@@ -1,37 +1,19 @@
 'use client';
 import React, { useState } from 'react';
 import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-  LogoutOutlined,
   HomeOutlined,
   FormOutlined,
+  LogoutOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Layout, Menu, theme } from 'antd';
-import { signOut } from 'next-auth/react';
+import { Layout, Menu, theme, Avatar, Space, Typography } from 'antd';
+import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 const { Header, Content, Footer, Sider } = Layout;
+const { Text } = Typography;
 
 type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[],
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
-}
 
 export default function ProtectedLayout({
   children,
@@ -43,6 +25,7 @@ export default function ProtectedLayout({
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   const router = useRouter();
+  const { data: session } = useSession();
 
   const handleLogout = () => {
     signOut({ callbackUrl: '/' });
@@ -81,7 +64,24 @@ export default function ProtectedLayout({
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} />
+        <Header style={{ 
+          padding: '0 16px', 
+          background: colorBgContainer, 
+          display: 'flex', 
+          alignItems: 'center',
+          justifyContent: 'flex-end' 
+        }}>
+          <Space>
+            <Text>{session?.user?.name}</Text>
+            <Avatar 
+              src={session?.user?.image} 
+              alt={session?.user?.name || 'User avatar'}
+              style={{ cursor: 'pointer' }}
+            >
+              {!session?.user?.image && session?.user?.name?.[0]}
+            </Avatar>
+          </Space>
+        </Header>
         <Content style={{ margin: '1rem', borderRadius: borderRadiusLG, background: colorBgContainer, padding: '1rem' }}>
           {children}
         </Content>
