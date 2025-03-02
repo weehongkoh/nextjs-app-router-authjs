@@ -1,106 +1,30 @@
 'use client';
-import React, { useState } from 'react';
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-  LogoutOutlined, // Adicionei um ícone para o logout
-} from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import { signOut } from 'next-auth/react';
+import React from 'react';
+import { Breadcrumb, theme } from 'antd';
 
-const { Header, Content, Footer, Sider } = Layout;
-
-type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[],
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
-}
-
-const App: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
+export default function ProtectedPage() {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  // Função para lidar com o logout
-  const handleLogout = () => {
-    signOut({ callbackUrl: '/' }); // Redireciona para a página inicial após o logout
-  };
-
-  // Itens do menu
-  const items: MenuItem[] = [
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
-    getItem('User', 'sub1', <UserOutlined />, [
-      getItem('Tom', '3'),
-      getItem('Bill', '4'),
-      getItem('Alex', '5'),
-    ]),
-    getItem('Team', 'sub2', <TeamOutlined />, [
-      getItem('Team 1', '6'),
-      getItem('Team 2', '8'),
-    ]),
-    getItem('Files', '9', <FileOutlined />),
-    getItem('Sign out', 'signout', <LogoutOutlined />), // Ícone de logout
+  const breadcrumbItems = [
+    { title: 'User' },
+    { title: 'Bill' },
   ];
 
-  // Função para lidar com cliques no menu
-  const handleMenuClick: MenuProps['onClick'] = (e) => {
-    if (e.key === 'signout') {
-      handleLogout(); // Chama a função de logout quando o item "Logout" é clicado
-    }
-  };
-
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-        <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          defaultSelectedKeys={['1']}
-          mode="inline"
-          items={items}
-          onClick={handleMenuClick} // Adiciona o manipulador de cliques
-        />
-      </Sider>
-      <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} />
-        <Content style={{ margin: '0 16px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            Bill is a cat.
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Ant Design {new Date().getFullYear()} Created by Ant UED
-        </Footer>
-      </Layout>
-    </Layout>
+    <>
+      <Breadcrumb items={breadcrumbItems} style={{ margin: '16px 0' }} />
+      <div
+        style={{
+          padding: 24,
+          minHeight: 360,
+          background: colorBgContainer,
+          borderRadius: borderRadiusLG,
+        }}
+      >
+        Bill is a cat.
+      </div>
+    </>
   );
-};
-
-export default App;
+}
