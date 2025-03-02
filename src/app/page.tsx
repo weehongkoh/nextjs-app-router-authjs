@@ -5,6 +5,7 @@ import { auth } from "@/auth";
 import Auth0Button from "@/components/buttons/Auth0";
 import DiscordButton from "@/components/buttons/DiscordButton";
 import GoogleButton from "@/components/buttons/GoogleButton";
+import GithubButton from "@/components/buttons/GithubButton";
 import LoginButton from "@/components/buttons/LoginButton";
 import LogoutButton from "@/components/buttons/LogoutButton";
 
@@ -54,10 +55,33 @@ export default async function Home() {
           priority
         />
       </div>
-      <div className="grid grid-cols-1 gap-y-4 md:grid-cols-2 md:gap-x-6">
-        <GoogleButton />
-        <DiscordButton />
-        <Auth0Button />
+      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
+        <div className="group rounded-lg border border-transparent px-5 py-4">
+          <h2 className="mb-3 text-2xl font-semibold">Auth0</h2>
+          <Auth0Button />
+        </div>
+
+        <div className="group rounded-lg border border-transparent px-5 py-4">
+          <h2 className="mb-3 text-2xl font-semibold">Discord</h2>
+          <DiscordButton />
+        </div>
+
+        <div className="group rounded-lg border border-transparent px-5 py-4">
+          <h2 className="mb-3 text-2xl font-semibold">Google</h2>
+          <GoogleButton />
+        </div>
+
+        <div className="group rounded-lg border border-transparent px-5 py-4">
+          <h2 className="mb-3 text-2xl font-semibold">GitHub</h2>
+          <GithubButton />
+        </div>
+
+        <div className="group rounded-lg border border-transparent px-5 py-4">
+          <h2 className="mb-3 text-2xl font-semibold">
+            Login with Credential
+          </h2>
+          <LoginButton auth={null} />
+        </div>
       </div>
       <div>
         <h2 className="text-2xl font-bold mb-3 mt-8 text-center lg:mt-0">

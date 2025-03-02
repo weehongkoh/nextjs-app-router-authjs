@@ -14,6 +14,8 @@ const Icon = ({ provider }: { provider: string }) => {
     imagePath = "/images/icons/discord.svg";
   } else if (provider === "Auth0") {
     imagePath = "/images/icons/auth0.svg";
+  } else if (provider === "GitHub") {
+    imagePath = "/images/icons/github.svg";
   }
 
   return (
