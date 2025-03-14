@@ -16,14 +16,13 @@ If you just want to implement the OAuth provider only, this [OAuth branch](https
 
 ## Latest Implementation
 
+- 14-03-2025 - Upgrade package ESLint 9, TailwindCSS 4, etc
 - 18-01-2025 - Upgrade to NextJs 15 and Auth.js (Next Auth)
 - 29-08-2024 - Add Auth0 Provider
 - 08-06-2024 - Add login credential on Custom Login
 - 04-05-2024 - Add database adapter on Custom Login
 - 06-03-2024 - Update the Landing Page and Custom Login Page
 - 06-03-2024 - Upgrade NPM Package to Latest Version
-- 09-02-2024 - Upgrade to Nextjs 15
-- 26-05-2023 - NextJs 13 and NextAuth
 
 ## Features
 

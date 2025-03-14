@@ -2,8 +2,15 @@
 
 import Image from "next/image";
 
-import { ClientSafeProvider } from "next-auth/lib/client";
 import { signIn } from "next-auth/react";
+
+type ClientSafeProvider = {
+  id: string;
+  name: string;
+  type: string;
+  signinUrl: string;
+  callbackUrl: string;
+}
 
 const Icon = ({ provider }: { provider: string }) => {
   let imagePath = "";
@@ -26,7 +33,6 @@ const Icon = ({ provider }: { provider: string }) => {
     />
   );
 };
-
 export default function LoginButton({
   auth,
 }: {
@@ -37,12 +43,12 @@ export default function LoginButton({
     <button
       type="button"
       className="border shadow-1 rounded-md py-3 px-6 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-      onClick={() => signIn(auth?.id)}
+      onClick={() => signIn(auth?.id as string)}
     >
       {auth ? (
         <div className="flex items-center">
-          <Icon provider={auth.name} />
-          Sign In with {auth.name}
+          <Icon provider={auth.name as string} />
+          Sign In with {auth.name as string}
         </div>
       ) : (
         "Custom Login Page"

@@ -7,23 +7,21 @@ import { getProviders } from "next-auth/react";
 import Divider from "@/components/Divider";
 import LoginForm from "@/components/LoginForm";
 import LoginButton from "@/components/buttons/LoginButton";
-import { ClientSafeProvider } from "next-auth/lib/client";
+
+type Providers = Awaited<ReturnType<typeof getProviders>>
 
 const renderLoginButtons = (
-  providers: Record<string, ClientSafeProvider | null> | null
+  providers: Providers | null
 ) =>
   providers
     ? Object.values(providers)
-        .filter((provider): provider is ClientSafeProvider => provider !== null)
-        .filter(({ id }) => id !== "hasura-credentials")
-        .map((provider) => <LoginButton auth={provider} key={provider.id} />)
+      .filter((provider) => provider !== null)
+      .filter(({ id }) => id !== "hasura-credentials")
+      .map((provider) => <LoginButton auth={provider} key={provider.id} />)
     : null;
 
 export default function SignIn() {
-  const [providers, setProviders] = useState<Record<
-    string,
-    ClientSafeProvider | null
-  > | null>(null);
+  const [providers, setProviders] = useState<Providers | null>(null);
 
   useEffect(() => {
     async function fetchProviders() {
