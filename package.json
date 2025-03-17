@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@ant-design/icons": "^5.6.1",
@@ -35,7 +36,8 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
-    "@types/crypto-js": "^4.2.2"
+    "@types/crypto-js": "^4.2.2",
+    "cypress": "^14.2.0"
   },
   "overrides": {
     "@types/react": "19.0.7",
