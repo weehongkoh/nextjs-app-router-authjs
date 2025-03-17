@@ -7,7 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "test": "cypress run --component --env codeCoverage=true",
+    "coverage": "nyc npm run test",
+    "see-cy-coverage": "open ./cypress-coverage/index.html",
+    "pre-e2e": "rm -rf .nyc_output coverage .next || true",
+    "e2e": "npm run pre-e2e && cypress run --component"
+  },
+  "nyc": {
+    "extends": ".nycrc.json",
+    "report-dir": "cypress-coverage",
+    "reporter": [
+      "json",
+      "lcov",
+      "text-summary"
+    ]
   },
   "dependencies": {
     "@ant-design/icons": "^5.6.1",
@@ -35,9 +49,12 @@
     "yup": "^1.6.1"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.13.12",
     "@tailwindcss/forms": "^0.5.7",
     "@types/crypto-js": "^4.2.2",
-    "cypress": "^14.2.0"
+    "babel-plugin-istanbul": "^7.0.0",
+    "cypress": "^14.2.0",
+    "nyc": "^17.1.0"
   },
   "overrides": {
     "@types/react": "19.0.7",

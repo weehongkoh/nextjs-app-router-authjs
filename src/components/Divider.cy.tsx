@@ -1,9 +1,9 @@
 import React from 'react'
-import Alert from './Alert'
+import Divider from './Divider'
 
-describe('<Alert />', () => {
+describe('<Divider />', () => {
   it('renders', () => {
     // see: https://on.cypress.io/mounting-react
-    cy.mount(<Alert />)
+    cy.mount(<Divider />)
   })
 })

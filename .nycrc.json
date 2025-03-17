@@ -1,0 +1,16 @@
+{
+    "extension": [".js", ".jsx", ".ts", ".tsx"],
+    "include": [
+        "src/**/*",
+        "app/**/*"
+    ],
+    "exclude": ["pages/api/__coverage__.js"],
+    "all": true,
+    "sourceMap": true,
+    "instrument": true,
+    "reporter": [
+    "text",
+    "html"
+  ]
+  }
+  
