@@ -12,8 +12,6 @@ This is a NextJs 15 App Router boilerplate that uses the Auth.js (Next Auth) lib
 
 The current repository includes a database adapter, which increases the complexity of the code.
 
-If you just want to implement the OAuth provider only, this [OAuth branch](https://github.com/weehongayden/nextjs-app-router-nextauth/tree/oauth-provider) is for you.
-
 ## Latest Implementation
 
 - 14-03-2025 - Upgrade package ESLint 9, TailwindCSS 4, etc
