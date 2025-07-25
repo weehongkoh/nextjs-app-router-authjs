@@ -64,6 +64,7 @@ export default async function Home() {
           Changelog
         </h2>
         <ol className="font-mono">
+          <li>26-07-2025 - Update package to latest version</li>
           <li>14-03-2025 - Upgrade package ESLint 9, TailwindCSS 4, etc</li>
           <li>18-01-2025 - Upgrade to NextJs 15</li>
           <li>29-08-2024 - Add Auth0 Provider</li>

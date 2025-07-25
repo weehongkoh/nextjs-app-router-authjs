@@ -13,7 +13,7 @@ This is a NextJs 15 App Router boilerplate that uses the Auth.js (Next Auth) lib
 The current repository includes a database adapter, which increases the complexity of the code.
 
 ## Latest Implementation
-
+- 26-07-2025 - Upgrade package to latest version
 - 14-03-2025 - Upgrade package ESLint 9, TailwindCSS 4, etc
 - 18-01-2025 - Upgrade to NextJs 15 and Auth.js (Next Auth)
 - 29-08-2024 - Add Auth0 Provider
